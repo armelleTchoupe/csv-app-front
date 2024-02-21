@@ -1,0 +1,24 @@
+<app-upload></app-upload>
+<br />
+<h2>Datasets</h2>
+<br />
+<ul>
+  <li *ngFor="let dataset of datasets">
+    {{ dataset.id }} - {{ dataset.filename }} - {{ dataset.size }}
+    <button (click)="deleteDataset(dataset.id)">Delete</button>
+    <button (click)="generatePlot(dataset.id)">Generate Plot</button>
+  </li>
+</ul>
+<div *ngIf="chartData">
+  <div style="display: block">
+    <canvas
+      baseChart
+      [datasets]="chartData.datasets"
+      [labels]="chartData.labels"
+      [options]="chartOptions"
+      [legend]="chartLegend"
+      chartType="bar"
+    >
+    </canvas>
+  </div>
+</div>
